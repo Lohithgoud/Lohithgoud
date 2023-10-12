@@ -1,0 +1,61 @@
+import math
+
+def external_merge_sort(input_file, output_file, chunk_size):
+  """Sorts a large file using the external merge sort algorithm.
+
+  Args:
+    input_file: The path to the input file.
+    output_file: The path to the output file.
+    chunk_size: The size of each chunk to sort.
+  """
+
+  # Divide the input file into chunks.
+  chunks = []
+  with open(input_file, "rb") as f:
+    while True:
+      chunk = f.read(chunk_size)
+      if not chunk:
+        break
+      chunks.append(chunk)
+
+  # Sort each chunk.
+  sorted_chunks = []
+  for chunk in chunks:
+    sorted_chunks.append(sorted(chunk))
+
+  # Merge the sorted chunks.
+  with open(output_file, "wb") as f:
+    while sorted_chunks:
+      # Read the first element from each sorted chunk.
+      min_elements = []
+      for sorted_chunk in sorted_chunks:
+        if sorted_chunk:
+          min_elements.append(sorted_chunk.pop(0))
+
+      # Find the smallest element and write it to the output file.
+      min_element = min(min_elements)
+      f.write(min_element)
+
+      # Refill the empty sorted chunks.
+      for i in range(len(sorted_chunks)):
+        if not sorted_chunks[i]:
+          if i < len(chunks):
+            sorted_chunks[i] = sorted(chunks[i])
+          else:
+            sorted_chunks[i] = []
+
+def main():
+  # Get the input and output file paths.
+  input_file = input("Enter the path to the input file: ")
+  output_file = input("Enter the path to the output file: ")
+
+  # Get the chunk size.
+  chunk_size = int(input("Enter the chunk size: "))
+
+  # Sort the file.
+  external_merge_sort(input_file, output_file, chunk_size)
+
+  print("The file has been sorted successfully.")
+
+if __name__ == "__main__":
+  main()
