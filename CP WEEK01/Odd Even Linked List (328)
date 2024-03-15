@@ -1,0 +1,18 @@
+def oddEven(self,head):
+      oddhead = self.head
+      evenhead = self.head.next
+      
+      odd = oddhead
+      even = evenhead
+      
+      while even and even.next:
+        odd.next = even.next
+        odd = odd.next
+        even.next = odd.next
+        even = even.next
+        odd.next = even.next
+      odd.next = evenhead
+      self.rec_show(self.head)
+      
+          
+    
