@@ -1,14 +1,14 @@
 import heapq
 
-class Graph:
-    def __init__(self, vertices):
-        self.V = vertices
-        self.graph = [[] for _ in range(vertices)]
+# class Graph:
+#     def __init__(self, vertices):
+#         self.V = vertices
+#         self.graph = [[] for _ in range(vertices)]
 
-    # (des, start,weight)
-    def add_edge(self, u, v, w):
-        self.graph[u].append((v, w))
-        self.graph[v].append((u, w))
+#     # (des, start,weight)
+#     def add_edge(self, u, v, w):
+#         self.graph[u].append((v, w))
+#         self.graph[v].append((u, w))
   
   
 def prism_mst(graph,start):
