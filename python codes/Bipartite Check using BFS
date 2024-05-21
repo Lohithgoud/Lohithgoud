@@ -1,0 +1,31 @@
+class Solution:
+    def check(self,start,v,graph,colour):
+        queue = []
+        queue.append(start)
+        colour[start] = 0
+
+        while queue:
+            node = queue.pop(0)
+            for ngbr in graph[node]:
+                if(colour[ngbr] == -1 ):
+                    colour[ngbr] = 1 - colour[node]
+                    queue.append(ngbr)
+                elif(colour[node] == colour[ngbr]):
+                    return False
+
+        return True
+
+
+
+
+    def isBipartite(self, graph: List[List[int]]) -> bool:
+        v = len(graph)
+        colour = [-1] * v
+        for i in range(v):
+            if(colour[i] == -1):
+                if(self.check(i,v,graph,colour) == False):
+                    return False
+        
+        return True
+
+        
