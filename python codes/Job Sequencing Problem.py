@@ -1,3 +1,11 @@
+class jobs:
+    def __init__(self,start,end,pos):
+        self.start = start
+        self.end = end
+        self.pos = pos
+        
+        
+
 class Solution:
     
     #Function to find the maximum profit and the number of jobs done.
